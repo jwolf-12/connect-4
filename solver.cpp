@@ -4,7 +4,7 @@
 using namespace std;
 #include <bitset>
 
-int Solver::negmax(const Position& P){
+int Solver::negmax(const Position& P,int alpha, int beta){
     if(P.nb_moves()==P.WIDTH*P.HEIGHT){ //draw state
         return 0;
     }
@@ -15,15 +15,23 @@ int Solver::negmax(const Position& P){
         }
     }
 
-    int best_score=P.WIDTH*P.HEIGHT*-1;
+    int max=(P.WIDTH*P.HEIGHT - P.nb_moves()-1)/2;
+
+    if(beta>max){
+        beta=max;
+        if(alpha>=beta) return beta;
+    }
 
     for(int x=0;x<P.WIDTH;x++){
         if(P.can_play(x)){
             Position P2(P);
             P2.play(x);
-            best_score=max(best_score,negmax(P2)*-1);
+            int score = -negmax(P2,-beta,-alpha);
+
+            if(score>=beta) return score;
+            if(score>alpha) alpha=score;
         }
     }
-    return best_score;
+    return alpha;
 
 }

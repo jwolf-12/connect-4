@@ -17,6 +17,7 @@ bool Position::can_play(int col) const{
 
 void Position::print(){
     cout << bitset<49>(position) << endl;
+    cout << bitset<49>(mask) << endl;
 }
 
 uint64_t Position::bottom_mask(int col){
@@ -40,14 +41,14 @@ bool Position::is_winning_move(int col) const {
     uint64_t m;
 
     // horizontal
-    m = pos & (pos >> 7);
-    if(m & (m >> 14)) return true;
+    m = pos & (pos >> (HEIGHT+1));
+    if(m & (m >> (2*(HEIGHT+1)))) return true;
 
     // diagonal /
-    m = pos & (pos >> 6);
-    if(m & (m >> 12)) return true;
+    m = pos & (pos >> HEIGHT);
+    if(m & (m >> (2*HEIGHT))) return true;
 
-    // diagonal \
+    // diagonal 
     m = pos & (pos >> 8);
     if(m & (m >> 16)) return true;
 

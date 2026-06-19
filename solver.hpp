@@ -7,5 +7,5 @@ using namespace std;
 class Solver{
 
 public:
-    int negmax(const Position& P);
+    int negmax(const Position& P,int alpha,int beta);
 };
