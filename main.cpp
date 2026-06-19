@@ -12,7 +12,7 @@ int main() {
     for(char c : moves) {
         int col = c - '1';
         P.play(col);
-        cout << "played" << endl;
+        cout << "playe" << endl;
     }
 
     Solver S;
