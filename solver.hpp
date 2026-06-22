@@ -3,6 +3,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 #include "position.hpp"
+#include "transportation_table.hpp"
 
 class Solver{
 public:

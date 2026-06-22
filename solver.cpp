@@ -4,6 +4,8 @@
 using namespace std;
 #include <bitset>
 
+Transportation_Table T(8388593);
+
 
 int Solver::negmax(const Position& P,int alpha, int beta){
 
@@ -23,6 +25,9 @@ int Solver::negmax(const Position& P,int alpha, int beta){
     }
 
     int max=(P.WIDTH*P.HEIGHT - P.nb_moves()-1)/2;
+    if(int val = T.get(P.key())){
+        max = val + P.MIN_SCORE -1;
+    }
 
     if(beta>max){
         beta=max;
@@ -39,6 +44,7 @@ int Solver::negmax(const Position& P,int alpha, int beta){
             if(score>alpha) alpha=score;
         }
     }
+    T.put(P.key(),alpha - P.MIN_SCORE +1);
     return alpha;
 
 }

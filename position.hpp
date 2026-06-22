@@ -19,9 +19,15 @@ public:
     void print();
     static const int WIDTH=7;
     static const int HEIGHT=6;
+    static const int MIN_SCORE =- -(WIDTH*HEIGHT)/2 +3;
+    static const int MAX_SCORE = (WIDTH*HEIGHT)/2 -3; 
 
     static uint64_t top_mask(int col);
     static uint64_t bottom_mask(int col);
     static uint64_t column_mask(int col);
+
+    uint64_t key() const{
+        return position + mask;
+    }
 
 };
