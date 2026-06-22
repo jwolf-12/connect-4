@@ -5,14 +5,12 @@ using namespace std;
 #include <bitset>
 
 Transportation_Table T(8388593);
+static const int exploration_order[7] = {3,2,4,1,5,0,6};
 
 
 int Solver::negmax(const Position& P,int alpha, int beta){
 
     explored_nodes++;
-
-    vector<int> exploration_order(P.WIDTH);
-    exploration_order={3,2,4,1,5,0,6};
 
     if(P.nb_moves()==P.WIDTH*P.HEIGHT){ //draw state
         return 0;
