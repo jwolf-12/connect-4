@@ -27,7 +27,7 @@ int main() {
         for(auto p :  moves){
             P.play(p-'1');
         }
-        int score = s.negmax(P,-22,22);
+        int score = s.solve(P);
         if(sign(score)==sign(expected_score)) c+=1;
     }
     auto end = chrono::high_resolution_clock::now();
